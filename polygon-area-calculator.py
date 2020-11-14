@@ -17,20 +17,29 @@ class Rectangle:
   def get_perimeter(self):
     return 2 * self.width + 2 * self.height
 
-  def get_picture(self, rectangle):
-    if self.width or self.height > 50:
+  def get_diagonal(self):
+    return (self.width ** 2 + self.height ** 2) ** 0.5
+
+  def get_picture(self):
+    if self.width > 50 or self.height > 50:
       return "Too big for picture."
     else:
       width = "*" * self.width
       picture = (width + "\n") * self.height
+      return picture
 
-    return picture
+  def get_amount_inside(self, rectangle):
+    if rectangle.width > self.width or rectangle.height > self.height:
+      return 0
+    else:
+      times_height = int(self.width / rectangle.width)
+      times_width = int(self.height / rectangle.height)
+      return times_height * times_width
+    
 
-  def get_amount_inside():
-    pass
 
-
-
+  def __repr__(self):
+    return f"Rectangle(width={self.width}, height={self.height})"
 
 class Square(Rectangle):
   def __init__(self, length):
@@ -45,6 +54,13 @@ class Square(Rectangle):
     
   def set_height(self, length):
     self.setside(length)
+  
+  def __repr__(self):
+    return f"Square(side={self.width})"
+      
+
+
+
 
 rect = Rectangle(10, 5)
 print(rect.get_area())
